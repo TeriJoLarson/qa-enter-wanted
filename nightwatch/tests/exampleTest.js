@@ -9,10 +9,10 @@ module.exports = {
     after: browser => {
         browser.end()
     },
-    'I can put data in the fields and generate a result' : browser => {
-            //set the transaction from your data file
+    'I can put data in the fields and generate a result': browser => {
+        //set the transaction from your data file
         let transaction = data.transactions.minimumEntry
-            //send the fields & data to input
+        //send the fields & data to input
         functions.inputSet(selectors.fields, transaction.fields, browser)
         browser
             //submit
@@ -20,29 +20,130 @@ module.exports = {
             .pause(100)
             //expect header to be right
             .expect.element(selectors.messages.header).text.to.equal(transaction.results.header)
-            //expect error list to be empty
+        //expect error list to be empty
         browser.expect.element(selectors.messages.errorList).text.to.equal('')
-            //expect query title to be right
+        //expect query title to be right
         browser.expect.element(selectors.messages.queryTitle).text.to.equal(transaction.results.queryTitle)
-            //expect assembled query to be right
+        //expect assembled query to be right
         browser.expect.element(selectors.messages.assembledQuery).text.to.equal(transaction.results.assembledQuery)
     },
-    'I can put bad data in and get the right error message' : browser => {
-            //set the transaction from your data file
-        let transaction = data.transactions.olnOnly
-            //send the fields & data to input
-        functions.inputSet(selectors.fields, data.transactions.olnOnly.fields, browser)
+    'I can put maxinumEntry in the fields and generate a result': browser => {
+        //set the transaction from your data file
+        let transaction = data.transactions.maxinumEntry
+        //send the fields & data to input
+        functions.inputSet(selectors.fields, transaction.fields, browser)
         browser
             //submit
             .click(selectors.buttons.submit)
             .pause(100)
             //expect header to be right
             .expect.element(selectors.messages.header).text.to.equal(transaction.results.header)
-            //expect error list to contain all the right errors
-        functions.messagesCheck(selectors.messages.errorList, transaction.results.errorList, browser)
-            //expect query title to be right
+        //expect error list to be empty
+        browser.expect.element(selectors.messages.errorList).text.to.equal('')
+        //expect query title to be right
         browser.expect.element(selectors.messages.queryTitle).text.to.equal(transaction.results.queryTitle)
-            //expect assembled query to be right
+        //expect assembled query to be right
+        browser.expect.element(selectors.messages.assembledQuery).text.to.equal(transaction.results.assembledQuery)
+
+    },
+    'I can put only dl data in and get the right error message': browser => {
+        //set the transaction from your data file
+        let transaction = data.transactions.olnOnly
+        //send the fields & data to input
+        functions.inputSet(selectors.fields, transaction.fields, browser)
+        browser
+            //submit
+            .click(selectors.buttons.submit)
+            .pause(100)
+            //expect header to be right
+            .expect.element(selectors.messages.header).text.to.equal(transaction.results.header)
+        //expect error list to contain all the right errors
+        functions.messagesCheck(selectors.messages.errorList, transaction.results.errorList, browser)
+        //expect query title to be right
+        browser.expect.element(selectors.messages.queryTitle).text.to.equal(transaction.results.queryTitle)
+        //expect assembled query to be right
+        browser.expect.element(selectors.messages.assembledQuery).text.to.equal(transaction.results.assembledQuery)
+    },
+    'I can put only dl state data in and get the right error message': browser => {
+        let transaction = data.transactions.olsOnly
+        functions.inputSet(selectors.fields, transaction.fields, browser)
+        browser
+            //submit
+            .click(selectors.buttons.submit)
+            .pause(100)
+            //expect header to be right
+            .expect.element(selectors.messages.header).text.to.equal(transaction.results.header)
+        //expect error list to contain all the right errors
+        functions.messagesCheck(selectors.messages.errorList, transaction.results.errorList, browser)
+        //expect query title to be right
+        browser.expect.element(selectors.messages.queryTitle).text.to.equal(transaction.results.queryTitle)
+        //expect assembled query to be right
+        browser.expect.element(selectors.messages.assembledQuery).text.to.equal(transaction.results.assembledQuery)
+    },
+
+    'I can put only license data in and get the right error message': browser => {
+        let transaction = data.transactions.licOnly
+        functions.inputSet(selectors.fields, transaction.fields, browser)
+        browser
+            //submit
+            .click(selectors.buttons.submit)
+            .pause(100)
+            //expect header to be right
+            .expect.element(selectors.messages.header).text.to.equal(transaction.results.header)
+        //expect error list to contain all the right errors
+        functions.messagesCheck(selectors.messages.errorList, transaction.results.errorList, browser)
+        //expect query title to be right
+        browser.expect.element(selectors.messages.queryTitle).text.to.equal(transaction.results.queryTitle)
+        //expect assembled query to be right
+        browser.expect.element(selectors.messages.assembledQuery).text.to.equal(transaction.results.assembledQuery)
+    },
+
+    'I can put only licenste state data in and get the right error message': browser => {
+        let transaction = data.transactions.lisOnly
+        functions.inputSet(selectors.fields, transaction.fields, browser)
+        browser
+            //submit
+            .click(selectors.buttons.submit)
+            .pause(100)
+            //expect header to be right
+            .expect.element(selectors.messages.header).text.to.equal(transaction.results.header)
+        //expect error list to contain all the right errors
+        functions.messagesCheck(selectors.messages.errorList, transaction.results.errorList, browser)
+        //expect query title to be right
+        browser.expect.element(selectors.messages.queryTitle).text.to.equal(transaction.results.queryTitle)
+        //expect assembled query to be right
+        browser.expect.element(selectors.messages.assembledQuery).text.to.equal(transaction.results.assembledQuery)
+    },
+    'I can put only license year data in and get the right error message': browser => {
+        let transaction = data.transactions.liyOnly
+        functions.inputSet(selectors.fields, transaction.fields, browser)
+        browser
+            //submit
+            .click(selectors.buttons.submit)
+            .pause(100)
+            //expect header to be right
+            .expect.element(selectors.messages.header).text.to.equal(transaction.results.header)
+        //expect error list to contain all the right errors
+        functions.messagesCheck(selectors.messages.errorList, transaction.results.errorList, browser)
+        //expect query title to be right
+        browser.expect.element(selectors.messages.queryTitle).text.to.equal(transaction.results.queryTitle)
+        //expect assembled query to be right
+        browser.expect.element(selectors.messages.assembledQuery).text.to.equal(transaction.results.assembledQuery)
+    },
+    'I can put Less data in and get the right error message': browser => {
+        let transaction = data.transactions.lessThanRequired
+        functions.inputSet(selectors.fields, transaction.fields, browser)
+        browser
+            //submit
+            .click(selectors.buttons.submit)
+            .pause(100)
+            //expect header to be right
+            .expect.element(selectors.messages.header).text.to.equal(transaction.results.header)
+        //expect error list to contain all the right errors
+        functions.messagesCheck(selectors.messages.errorList, transaction.results.errorList, browser)
+        //expect query title to be right
+        browser.expect.element(selectors.messages.queryTitle).text.to.equal(transaction.results.queryTitle)
+        //expect assembled query to be right
         browser.expect.element(selectors.messages.assembledQuery).text.to.equal(transaction.results.assembledQuery)
     }
 }
